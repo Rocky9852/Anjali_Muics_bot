@@ -7,17 +7,15 @@
 #
 # All rights reserved.
 #
-import math 
+import math
 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from DnsXMusic.utils.formatters import time_to_seconds
 
-def stream_markup_timer(_, chat_id, played, dur):
-    played_sec = time_to_seconds(played)
-    duration_sec = time_to_seconds(dur)
-    percentage = (played_sec / duration_sec) * 100
+def get_progress_bar(percentage):
     umm = math.floor(percentage)
+
     if 0 < umm <= 10:
         return "⚪─────────"
     elif 10 < umm <= 20:
@@ -46,15 +44,7 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
     duration_sec = time_to_seconds(dur)
     percentage = (played_sec / duration_sec) * 100
     bar = get_progress_bar(percentage)
-    bare = get_progress_bare(percentage)
-    baree = get_progress_baree(percentage) # using for getting the bar
     buttons = [
-        [
-            InlineKeyboardButton(
-                text=f"{baree}",
-                callback_data="GetTimer",
-            )
-        ],
         [
             InlineKeyboardButton(
                 text=f"{played} {bar} {dur}",
@@ -62,40 +52,20 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
             )
         ],
         [
-            InlineKeyboardButton(
-                text=f"{bare}",
-                callback_data="GetTimer",
-            )
-        ],
-          [
-            InlineKeyboardButton(
-                text="𝐔ρ𝖽αтєѕ", url=f"https://t.me/Music_World_Update"
-            ),
-            InlineKeyboardButton(text=_["CLOSEMENU_BUTTON"], callback_data="𝖢𝗅𝗈𝗌𝖾"
-          ),
-         
-        
-            InlineKeyboardButton(
-                text="𝐒υρρσɾƚ", url=f"https://t.me/Music_World_Support"),
-        ],
-    ]
+            InlineKeyboardButton(text="❚❚", callback_data=f"ADMIN Pause|{chat_id}"),
+            InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"),
+            InlineKeyboardButton(text="ᐅ", callback_data=f"ADMIN Resume|{chat_id}")],
+   ]
     return buttons
 
 
 def stream_markup(_, videoid, chat_id):
     buttons = [
           [
-            InlineKeyboardButton(
-                text="𝐔ρ𝖽αтєѕ", url=f"https://t.me/Music_World_Update"
-            ),
-            InlineKeyboardButton(text=_["CLOSEMENU_BUTTON"], callback_data="𝖢𝗅𝗈𝗌𝖾"
-          ),
-         
-        
-            InlineKeyboardButton(
-                text="𝐒υρρσɾƚ", url=f"https://t.me/Music_World_Support"),
-        ],
-    ]
+            InlineKeyboardButton(text="❚❚", callback_data=f"ADMIN Pause|{chat_id}"),
+            InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"),
+            InlineKeyboardButton(text="ᐅ", callback_data=f"ADMIN Resume|{chat_id}")],
+   ]
     return buttons
 
 
@@ -109,51 +79,25 @@ def telegram_markup_timer(_, chat_id, played, dur):
     buttons = [
         [
             InlineKeyboardButton(
-                text=f"{baree}",
-                callback_data="GetTimer",
-            )
-        ],
-        [
-            InlineKeyboardButton(
                 text=f"{played} {bar} {dur}",
                 callback_data="GetTimer",
             )
         ],
         [
-            InlineKeyboardButton(
-                text=f"{bare}",
-                callback_data="GetTimer",
-            )
-        ],
-          [
-            InlineKeyboardButton(
-                text="𝐔ρ𝖽αтєѕ", url=f"https://t.me/Music_World_Update"
-            ),
-            InlineKeyboardButton(text=_["CLOSEMENU_BUTTON"], callback_data="𝖢𝗅𝗈𝗌𝖾"
-          ),
-         
-        
-            InlineKeyboardButton(
-                text="𝐒υρρσɾƚ", url=f"https://t.me/Music_World_Support"),
-        ],
-    ]
+            InlineKeyboardButton(text="❚❚", callback_data=f"ADMIN Pause|{chat_id}"),
+            InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"),
+            InlineKeyboardButton(text="ᐅ", callback_data=f"ADMIN Resume|{chat_id}")],
+   ]
     return buttons
 
 
 def telegram_markup(_, chat_id):
     buttons = [
           [
-            InlineKeyboardButton(
-                text="𝐔ρ𝖽αтєѕ", url=f"https://t.me/Music_World_Update"
-            ),
-            InlineKeyboardButton(text=_["CLOSEMENU_BUTTON"], callback_data="𝖢𝗅𝗈𝗌𝖾"
-          ),
-         
-        
-            InlineKeyboardButton(
-                text="𝐒υρρσɾƚ", url=f"https://t.me/Music_World_Support"),
-        ],
-    ]
+            InlineKeyboardButton(text="❚❚", callback_data=f"ADMIN Pause|{chat_id}"),
+            InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"),
+            InlineKeyboardButton(text="ᐅ", callback_data=f"ADMIN Resume|{chat_id}")],
+   ]
     return buttons
 
 
