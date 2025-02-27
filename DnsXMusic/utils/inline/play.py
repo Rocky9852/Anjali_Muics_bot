@@ -7,15 +7,15 @@
 #
 # All rights reserved.
 #
-import math
-
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from DnsXMusic.utils.formatters import time_to_seconds
 
-def get_progress_bar(percentage):
+def stream_markup_timer(_, chat_id, played, dur):
+    played_sec = time_to_seconds(played)
+    duration_sec = time_to_seconds(dur)
+    percentage = (played_sec / duration_sec) * 100
     umm = math.floor(percentage)
-
     if 0 < umm <= 10:
         return "⚪─────────"
     elif 10 < umm <= 20:
@@ -39,97 +39,6 @@ def get_progress_bar(percentage):
     else:
         return "───────────"
         
-def stream_markup_timer(_, videoid, chat_id, played, dur):
-    played_sec = time_to_seconds(played)
-    duration_sec = time_to_seconds(dur)
-    percentage = (played_sec / duration_sec) * 100
-    bar = get_progress_bar(percentage)
-    buttons = [
-        [
-            InlineKeyboardButton(
-                text=f"{played} {bar} {dur}",
-                callback_data="GetTimer",
-            )
-        ],
-        [
-            InlineKeyboardButton(text="❚❚", callback_data=f"ADMIN Pause|{chat_id}"),
-            InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"),
-            InlineKeyboardButton(text="ᐅ", callback_data=f"ADMIN Resume|{chat_id}")],
-   ]
-    return buttons
-
-
-def stream_markup(_, videoid, chat_id):
-    buttons = [
-          [
-            InlineKeyboardButton(text="❚❚", callback_data=f"ADMIN Pause|{chat_id}"),
-            InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"),
-            InlineKeyboardButton(text="ᐅ", callback_data=f"ADMIN Resume|{chat_id}")],
-   ]
-    return buttons
-
-
-def telegram_markup_timer(_, chat_id, played, dur):
-    played_sec = time_to_seconds(played)
-    duration_sec = time_to_seconds(dur)
-    percentage = (played_sec / duration_sec) * 100
-    bar = get_progress_bar(percentage)  # using for getting the bar
-    bare = get_progress_bare(percentage)
-    baree = get_progress_baree(percentage)
-    buttons = [
-        [
-            InlineKeyboardButton(
-                text=f"{played} {bar} {dur}",
-                callback_data="GetTimer",
-            )
-        ],
-        [
-            InlineKeyboardButton(text="❚❚", callback_data=f"ADMIN Pause|{chat_id}"),
-            InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"),
-            InlineKeyboardButton(text="ᐅ", callback_data=f"ADMIN Resume|{chat_id}")],
-   ]
-    return buttons
-
-
-def telegram_markup(_, chat_id):
-    buttons = [
-          [
-            InlineKeyboardButton(text="❚❚", callback_data=f"ADMIN Pause|{chat_id}"),
-            InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"),
-            InlineKeyboardButton(text="ᐅ", callback_data=f"ADMIN Resume|{chat_id}")],
-   ]
-    return buttons
-
-
-## By umm
-close_keyboard = InlineKeyboardMarkup(
-    [[InlineKeyboardButton(text="〆 𝖢𝗅𝗈𝗌𝖾 〆", callback_data="𝖢𝗅𝗈𝗌𝖾")]]
-)
-
-## Search Query Inline
-
-
-def track_markup(_, videoid, user_id, channel, fplay):
-    buttons = [
-        [
-            InlineKeyboardButton(
-                text=_["P_B_1"],
-                callback_data=f"MusicStream {videoid}|{user_id}|a|{channel}|{fplay}",
-            ),
-            InlineKeyboardButton(
-                text=_["P_B_2"],
-                callback_data=f"MusicStream {videoid}|{user_id}|v|{channel}|{fplay}",
-            ),
-        ],
-        [
-            InlineKeyboardButton(
-                text=_["CLOSE_BUTTON"], callback_data=f"forceclose {videoid}|{user_id}"
-            )
-        ],
-    ]
-    return buttons
-
-
 def playlist_markup(_, videoid, user_id, ptype, channel, fplay):
     buttons = [
         [
@@ -214,3 +123,4 @@ def queue_markup(_, videoid, chat_id):
         [InlineKeyboardButton(text="〆 ᴄʟᴏsᴇ 〆", callback_data="close")],
     ]
     return buttons
+    
