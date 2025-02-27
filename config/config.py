@@ -109,11 +109,11 @@ GIT_TOKEN = getenv(
 
 # Only  Links formats are  accepted for this Var value.
 SUPPORT_CHANNEL = getenv(
-    "SUPPORT_CHANNEL", "https://t.me/Dns_Official_Channel"
-)  # Example:- https://t.me/TheTeamVivek
+    "SUPPORT_CHANNEL", "https://t.me/Music_World_Update"
+)  # Example:- https://t.me/Music_World_Update
 SUPPORT_GROUP = getenv(
-    "SUPPORT_GROUP", "https://t.me/DNS_NETWORK"
-)  # Example:- https://t.me/TheTeamVk
+    "SUPPORT_GROUP", "https://t.me/Music_World_Support"
+)  # Example:- https://t.me/Music_World_Support
 
 
 # Set it in True if you want to leave your assistant after a certain amount of time. [Set time via AUTO_LEAVE_ASSISTANT_TIME]
@@ -137,7 +137,7 @@ TELEGRAM_DOWNLOAD_EDIT_SLEEP = int(getenv("TELEGRAM_EDIT_SLEEP", "5"))
 
 
 # Your Github Repo.. Will be shown on /start Command
-GITHUB_REPO = getenv("GITHUB_REPO", "https://t.me/Dns_Official_Channel")
+GITHUB_REPO = getenv("GITHUB_REPO", "https://t.me/Music_World_Update")
 
 
 # Spotify Client.. Get it from https://developer.spotify.com/dashboard
@@ -213,7 +213,7 @@ autoclean = []
 
 START_IMG_URL = getenv(
     "START_IMG_URL",
-    "https://files.catbox.moe/q8hcg3.jpg",
+    "https://graph.org/file/4df86a4e5c3bd48972f55-0d056340bc5ac4c6f6.jpg",
 )
 
 PING_IMG_URL = getenv(
